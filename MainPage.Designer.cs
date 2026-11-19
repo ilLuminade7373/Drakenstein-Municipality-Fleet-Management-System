@@ -1,4 +1,6 @@
-﻿namespace DMFleetManagementSystem
+﻿using Microsoft.Data.SqlClient;
+
+namespace DMFleetManagementSystem
 {
     partial class MainPage
     {
@@ -31,10 +33,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             panel1 = new Panel();
             panel2 = new Panel();
+            panelContainer = new Panel();
+            label6 = new Label();
             label13 = new Label();
             label12 = new Label();
             label7 = new Label();
-            label6 = new Label();
             panel5 = new Panel();
             linkLabel4 = new LinkLabel();
             linkLabel5 = new LinkLabel();
@@ -42,8 +45,13 @@
             linkLabel2 = new LinkLabel();
             linkLabel3 = new LinkLabel();
             panel4 = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            label15 = new Label();
+            label21 = new Label();
             panel3 = new Panel();
+            linkLabel7 = new LinkLabel();
+            lblUserName = new Label();
+            pictureBox1 = new PictureBox();
+            linkLabel6 = new LinkLabel();
             label5 = new Label();
             label4 = new Label();
             label11 = new Label();
@@ -53,11 +61,13 @@
             label1 = new Label();
             label3 = new Label();
             label2 = new Label();
-            linkLabel6 = new LinkLabel();
+            openFileDialog1 = new OpenFileDialog();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel5.SuspendLayout();
+            panel4.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -80,19 +90,38 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(panelContainer);
             panel2.Controls.Add(label6);
             panel2.Controls.Add(label13);
             panel2.Controls.Add(label12);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(panel5);
             panel2.Controls.Add(panel4);
-            panel2.Controls.Add(flowLayoutPanel1);
             panel2.Controls.Add(panel3);
             panel2.Location = new Point(19, 180);
             panel2.Name = "panel2";
             panel2.Size = new Size(1426, 635);
             panel2.TabIndex = 12;
             panel2.Paint += panel2_Paint;
+            // 
+            // panelContainer
+            // 
+            panelContainer.BorderStyle = BorderStyle.FixedSingle;
+            panelContainer.Location = new Point(200, 80);
+            panelContainer.Name = "panelContainer";
+            panelContainer.Size = new Size(1013, 524);
+            panelContainer.TabIndex = 14;
+            panelContainer.Paint += panel6_Paint;
+            // 
+            // label6
+            // 
+            label6.BorderStyle = BorderStyle.FixedSingle;
+            label6.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(316, 7);
+            label6.Name = "label6";
+            label6.Size = new Size(98, 67);
+            label6.TabIndex = 13;
+            label6.Text = "⛟";
             // 
             // label13
             // 
@@ -124,16 +153,6 @@
             label7.TabIndex = 13;
             label7.Text = "Fleet";
             // 
-            // label6
-            // 
-            label6.BorderStyle = BorderStyle.FixedSingle;
-            label6.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(316, 7);
-            label6.Name = "label6";
-            label6.Size = new Size(98, 67);
-            label6.TabIndex = 13;
-            label6.Text = "⛟";
-            // 
             // panel5
             // 
             panel5.BorderStyle = BorderStyle.FixedSingle;
@@ -158,6 +177,7 @@
             linkLabel4.TabIndex = 3;
             linkLabel4.TabStop = true;
             linkLabel4.Text = "Notifications";
+            linkLabel4.LinkClicked += linkLabel4_LinkClicked;
             // 
             // linkLabel5
             // 
@@ -170,9 +190,11 @@
             linkLabel5.TabIndex = 4;
             linkLabel5.TabStop = true;
             linkLabel5.Text = "Logbook";
+            linkLabel5.LinkClicked += linkLabel5_LinkClicked;
             // 
             // linkLabel1
             // 
+            linkLabel1.ActiveLinkColor = Color.Red;
             linkLabel1.AutoSize = true;
             linkLabel1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.Black;
@@ -195,6 +217,7 @@
             linkLabel2.TabIndex = 1;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "My Vehicle";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
             // 
             // linkLabel3
             // 
@@ -207,26 +230,46 @@
             linkLabel3.TabIndex = 2;
             linkLabel3.TabStop = true;
             linkLabel3.Text = "My Trips";
+            linkLabel3.LinkClicked += linkLabel3_LinkClicked;
             // 
             // panel4
             // 
             panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(label15);
+            panel4.Controls.Add(label21);
             panel4.Location = new Point(11, 7);
             panel4.Name = "panel4";
-            panel4.Size = new Size(183, 661);
+            panel4.Size = new Size(183, 597);
             panel4.TabIndex = 6;
             // 
-            // flowLayoutPanel1
+            // label15
             // 
-            flowLayoutPanel1.BorderStyle = BorderStyle.FixedSingle;
-            flowLayoutPanel1.Location = new Point(206, 80);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1007, 524);
-            flowLayoutPanel1.TabIndex = 5;
+            label15.BorderStyle = BorderStyle.FixedSingle;
+            label15.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label15.Location = new Point(31, 49);
+            label15.Name = "label15";
+            label15.Size = new Size(98, 67);
+            label15.TabIndex = 15;
+            label15.Text = "⛟";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.BorderStyle = BorderStyle.FixedSingle;
+            label21.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label21.Location = new Point(17, 4);
+            label21.Name = "label21";
+            label21.Size = new Size(136, 33);
+            label21.TabIndex = 0;
+            label21.Text = "DriverPortal";
+            label21.Click += label21_Click;
             // 
             // panel3
             // 
             panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(linkLabel7);
+            panel3.Controls.Add(lblUserName);
+            panel3.Controls.Add(pictureBox1);
             panel3.Controls.Add(linkLabel6);
             panel3.Controls.Add(label5);
             panel3.Controls.Add(label4);
@@ -235,11 +278,62 @@
             panel3.Size = new Size(191, 597);
             panel3.TabIndex = 4;
             // 
+            // linkLabel7
+            // 
+            linkLabel7.AutoSize = true;
+            linkLabel7.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            linkLabel7.ForeColor = SystemColors.HotTrack;
+            linkLabel7.LinkColor = Color.MediumBlue;
+            linkLabel7.Location = new Point(48, 215);
+            linkLabel7.Name = "linkLabel7";
+            linkLabel7.Size = new Size(125, 31);
+            linkLabel7.TabIndex = 0;
+            linkLabel7.TabStop = true;
+            linkLabel7.Text = "Edit Profile";
+            linkLabel7.LinkClicked += linkLabel7_LinkClicked;
+            // 
+            // lblUserName
+            // 
+            lblUserName.AutoSize = true;
+            lblUserName.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblUserName.Location = new Point(37, 174);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(147, 31);
+            lblUserName.TabIndex = 4;
+            lblUserName.Text = "lblUserName";
+            lblUserName.Click += label14_Click_1;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(55, 69);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(103, 102);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
+            // linkLabel6
+            // 
+            linkLabel6.AutoSize = true;
+            linkLabel6.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            linkLabel6.LinkColor = Color.Black;
+            linkLabel6.Location = new Point(37, 493);
+            linkLabel6.Name = "linkLabel6";
+            linkLabel6.Size = new Size(103, 38);
+            linkLabel6.TabIndex = 2;
+            linkLabel6.TabStop = true;
+            linkLabel6.Text = "Logout";
+            linkLabel6.LinkClicked += linkLabel6_LinkClicked;
+            // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(61, 42);
+            label5.Location = new Point(61, 35);
             label5.Name = "label5";
             label5.Size = new Size(79, 31);
             label5.TabIndex = 1;
@@ -249,7 +343,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(61, 11);
+            label4.Location = new Point(70, -1);
             label4.Name = "label4";
             label4.Size = new Size(60, 31);
             label4.TabIndex = 0;
@@ -333,17 +427,9 @@
             label2.TabIndex = 5;
             label2.Click += label2_Click;
             // 
-            // linkLabel6
+            // openFileDialog1
             // 
-            linkLabel6.AutoSize = true;
-            linkLabel6.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkLabel6.LinkColor = Color.Black;
-            linkLabel6.Location = new Point(37, 493);
-            linkLabel6.Name = "linkLabel6";
-            linkLabel6.Size = new Size(103, 38);
-            linkLabel6.TabIndex = 2;
-            linkLabel6.TabStop = true;
-            linkLabel6.Text = "Logout";
+            openFileDialog1.FileName = "openFileDialog1";
             // 
             // MainPage
             // 
@@ -352,17 +438,27 @@
             ClientSize = new Size(1450, 825);
             Controls.Add(panel1);
             Name = "MainPage";
-            Text = "MainPage";
+            Text = "Municipal Driver Portal";
+            Load += MainPage_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
+
+        private void btnChangePhoto_Click(object sender, EventArgs e)
+        {
+           
+        } 
+        
 
         #endregion
 
@@ -379,7 +475,6 @@
         private Panel panel3;
         private Label label4;
         private Panel panel4;
-        private FlowLayoutPanel flowLayoutPanel1;
         private Label label5;
         private LinkLabel linkLabel5;
         private LinkLabel linkLabel4;
@@ -391,5 +486,17 @@
         private Label label12;
         private Label label7;
         private LinkLabel linkLabel6;
+        private Panel panelContainer;
+        private Label label19;
+        private Label label18;
+        private Label label17;
+        private Label label16;
+        private Label label15;
+        private PictureBox pictureBox1;
+        private Label label21;
+        private Label lblUserName;
+        private LinkLabel linkLabel7;
+        private Button btnChangePhoto;
+        private OpenFileDialog openFileDialog1;
     }
 }

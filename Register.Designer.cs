@@ -36,6 +36,7 @@
             label9 = new Label();
             label8 = new Label();
             panel2 = new Panel();
+            picEye = new PictureBox();
             textBox6 = new TextBox();
             textBox5 = new TextBox();
             label13 = new Label();
@@ -55,6 +56,7 @@
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picEye).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -67,7 +69,7 @@
             panel1.Controls.Add(label1);
             panel1.Location = new Point(-1, -11);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1169, 707);
+            panel1.Size = new Size(1230, 694);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
@@ -80,7 +82,7 @@
             panel3.Controls.Add(label8);
             panel3.Location = new Point(8, 189);
             panel3.Name = "panel3";
-            panel3.Size = new Size(217, 480);
+            panel3.Size = new Size(217, 453);
             panel3.TabIndex = 6;
             // 
             // label11
@@ -126,6 +128,7 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(picEye);
             panel2.Controls.Add(textBox6);
             panel2.Controls.Add(textBox5);
             panel2.Controls.Add(label13);
@@ -141,15 +144,27 @@
             panel2.Controls.Add(label4);
             panel2.Location = new Point(231, 189);
             panel2.Name = "panel2";
-            panel2.Size = new Size(899, 480);
+            panel2.Size = new Size(947, 453);
             panel2.TabIndex = 5;
             panel2.Paint += panel2_Paint;
+            // 
+            // picEye
+            // 
+            picEye.Cursor = Cursors.Hand;
+            picEye.Image = (Image)resources.GetObject("picEye.Image");
+            picEye.Location = new Point(893, 288);
+            picEye.Name = "picEye";
+            picEye.Size = new Size(42, 28);
+            picEye.SizeMode = PictureBoxSizeMode.StretchImage;
+            picEye.TabIndex = 13;
+            picEye.TabStop = false;
+            picEye.Click += picEye_Click;
             // 
             // textBox6
             // 
             textBox6.Location = new Point(355, 347);
             textBox6.Name = "textBox6";
-            textBox6.Size = new Size(532, 27);
+            textBox6.Size = new Size(580, 27);
             textBox6.TabIndex = 12;
             textBox6.TextChanged += textBox6_TextChanged;
             // 
@@ -184,7 +199,7 @@
             // button1
             // 
             button1.BackColor = SystemColors.ControlLight;
-            button1.Location = new Point(793, 413);
+            button1.Location = new Point(841, 403);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 8;
@@ -196,7 +211,7 @@
             // 
             textBox4.Location = new Point(355, 230);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(532, 27);
+            textBox4.Size = new Size(580, 27);
             textBox4.TabIndex = 7;
             textBox4.TextChanged += textBox4_TextChanged;
             // 
@@ -204,7 +219,7 @@
             // 
             textBox3.Location = new Point(357, 171);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(530, 27);
+            textBox3.Size = new Size(578, 27);
             textBox3.TabIndex = 6;
             textBox3.TextChanged += textBox3_TextChanged;
             // 
@@ -212,7 +227,7 @@
             // 
             textBox2.Location = new Point(355, 100);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(532, 27);
+            textBox2.Size = new Size(580, 27);
             textBox2.TabIndex = 5;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
@@ -220,7 +235,7 @@
             // 
             textBox1.Location = new Point(355, 32);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(532, 27);
+            textBox1.Size = new Size(580, 27);
             textBox1.TabIndex = 4;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
@@ -263,6 +278,7 @@
             label4.Size = new Size(147, 38);
             label4.TabIndex = 0;
             label4.Text = "UserName";
+            label4.Click += label4_Click;
             // 
             // label3
             // 
@@ -299,16 +315,18 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1165, 681);
+            ClientSize = new Size(1203, 681);
             Controls.Add(panel1);
             Name = "Register";
             Text = "Register";
+            Load += Register_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picEye).EndInit();
             ResumeLayout(false);
         }
 
@@ -337,5 +355,6 @@
         private Label label13;
         private TextBox textBox6;
         private TextBox textBox5;
+        private PictureBox picEye;
     }
 }

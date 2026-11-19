@@ -1,0 +1,22 @@
+USE [DM-FleetManagementSystem]
+GO
+
+CREATE TABLE Users(
+
+UserID INT IDENTITY(1,1) PRIMARY KEY,
+UserName VARCHAR(50) NOT NULL UNIQUE,
+EmailAdress VARCHAR(100) NOT NULL UNIQUE,
+Department VARCHAR(50) NOT NULL,
+Password VARCHAR(255) NOT NULL,
+);
+
+ALTER TABLE Users
+ADD Role VARCHAR(20) NOT NULL DEFAULT 'Driver';
+SELECT * FROM Users;
+
+
+
+
+
+
+
